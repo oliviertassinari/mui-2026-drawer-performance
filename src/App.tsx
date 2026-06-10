@@ -6,14 +6,15 @@ import {
 import { MuiDrawerComponent } from './components/MuiDrawerComponent';
 import { SilkDrawerComponent } from './components/SilkDrawerComponent';
 import { BaseUiDrawerComponent } from './components/BaseUiDrawerComponent';
+import { VaulDrawerComponent } from './components/VaulDrawerComponent';
 import './App.css';
 
 function App() {
-  const [activeDrawer, setActiveDrawer] = useState<'mui' | 'silk' | 'baseui' | null>(null);
+  const [activeDrawer, setActiveDrawer] = useState<'mui' | 'silk' | 'baseui' | 'vaul' | null>(null);
   const [open, setOpen] = useState(false);
   const [complexity, setComplexity] = useState<'light' | 'medium' | 'heavy'>('medium');
 
-  const handleOpen = (type: 'mui' | 'silk' | 'baseui') => {
+  const handleOpen = (type: 'mui' | 'silk' | 'baseui' | 'vaul') => {
     setActiveDrawer(type);
     setOpen(true);
   };
@@ -33,7 +34,7 @@ function App() {
         <div className="badge-gradient">UI Playground</div>
         <h1 className="app-title">React Bottom Sheet Arena</h1>
         <p className="app-subtitle">
-          An interactive playground to manually test and inspect bottom-drawer components from Material UI, Silk, and Base UI under various render payloads.
+          An interactive playground to manually test and inspect bottom-drawer components from Material UI, Silk, Base UI, and Vaul under various render payloads.
         </p>
       </header>
 
@@ -125,10 +126,30 @@ function App() {
                   <span className="meta-pill">Headless / CSS</span>
                 </div>
               </div>
-              <button 
-                className="action-btn" 
+              <button
+                className="action-btn"
                 style={{ background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)', boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)' }}
                 onClick={() => handleOpen('baseui')}
+              >
+                <Launch fontSize="small" /> Open Sheet
+              </button>
+            </div>
+
+            {/* Vaul Card */}
+            <div className="library-card">
+              <div className="library-info">
+                <div className="library-name">
+                  <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: '50%', backgroundColor: '#f59e0b' }}></span>
+                  Vaul Drawer
+                </div>
+                <div className="library-meta">
+                  <span className="meta-pill">Radix / CSS</span>
+                </div>
+              </div>
+              <button
+                className="action-btn"
+                style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)', boxShadow: '0 4px 12px rgba(245, 158, 11, 0.25)' }}
+                onClick={() => handleOpen('vaul')}
               >
                 <Launch fontSize="small" /> Open Sheet
               </button>
@@ -159,6 +180,16 @@ function App() {
 
       <BaseUiDrawerComponent
         open={activeDrawer === 'baseui' && open}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) {
+            handleClose();
+          }
+        }}
+        complexity={complexity}
+      />
+
+      <VaulDrawerComponent
+        open={activeDrawer === 'vaul' && open}
         onOpenChange={(isOpen) => {
           if (!isOpen) {
             handleClose();

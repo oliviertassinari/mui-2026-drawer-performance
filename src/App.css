@@ -702,6 +702,7 @@ body {
 
 /* CSS layered styles overrides for Silk Sheet */
 .silk-sheet-content {
+  height: 60svh !important;
   background-color: #1a1a1a !important;
   color: #f3f4f6 !important;
   border-top-left-radius: 20px !important;
@@ -721,6 +722,42 @@ body {
 }
 
 .silk-sheet-content [data-testid="drawer-content"] {
+  height: 100%;
+}
+
+/* Vaul Drawer styles */
+.vaul-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1300;
+}
+
+.vaul-content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1300;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: #1a1a1a;
+  color: #f3f4f6;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.vaul-content [data-testid="drawer-content"] {
   height: 100%;
 }
 
@@ -776,6 +813,9 @@ body {
     padding: 16px !important;
   }
   .silk-sheet-content {
+    padding: 16px !important;
+  }
+  .vaul-content {
     padding: 16px !important;
   }
 }
